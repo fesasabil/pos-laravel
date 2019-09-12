@@ -12,16 +12,11 @@ class Product extends Model
     protected $guarded = [];
 
     protected $fillable = [
-        'code', 'name', 'description', 'stock', 'price', 'category_id'
+        'code', 'name', 'description', 'stock', 'price', 'category_id', 'user_id'
     ];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function order_detail()
-    {
-        return $this->belongsTo(Order_detail::class);
     }
 }

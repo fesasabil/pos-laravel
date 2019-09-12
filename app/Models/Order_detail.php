@@ -10,13 +10,13 @@ class Order_detail extends Model
         'order_id', 'product_id', 'qty', 'price'
     ];
 
-    public function order()
-    {
-        return $this->hasMany(Order::class);
-    }
-
     public function product()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Product::class);
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
     }
 }

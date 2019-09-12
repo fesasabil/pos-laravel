@@ -10,18 +10,18 @@ class Order extends Model
         'invoice', 'customer_id', 'user_id', 'total'
     ];
 
+    public function order_detail()
+    {
+        return $this->hasMany(Order_detail::class);
+    }
+
     public function customer()
     {
-        return $this->hasMany(Customer::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function user()
     {
-        return $this->hasMany(User::class);
-    }
-
-    public function order_detail()
-    {
-        return $this->belongsTo(Order_detail::class);
+        return $this->belongsTo(User::class);
     }
 }

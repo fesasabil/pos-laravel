@@ -10,8 +10,13 @@ class Customer extends Model
         'email', 'name', 'address', 'phone'
     ];
 
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->hasMany(Order::class);
     }
 }

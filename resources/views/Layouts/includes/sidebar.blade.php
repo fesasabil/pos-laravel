@@ -4,7 +4,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Alexander Pierce</p>
@@ -25,88 +25,82 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-          <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link active">
-                  <i class="nav-icon fa fa-dashboard"></i>
-                  <p>
-                      Dashboard
-                  </p>
-              </a>
-          </li>
-        @if(auth()->user()->can('show products') || auth()->user()->can('delete products') || auth()->user()->can('create products'))
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-server"></i>
-              <p>
-                  Manajemen Produk
-                  <i class="right fa fa-angle-left"></i>
-              </p>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+          </ul>
+        </li>
 
-        <ul class="nav nav-treeview">
-          <li class="nav-item">
-              <a href="{{ route('category.index')}}" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Category</p>
-              </a>
-          </li>
+        @role('admin')
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-user"></i>
+            <span>Management Users</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">4</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('role.index') }}"><i class="fa fa-circle-o"></i> Role</a></li>
+            <li><a href="{{ route('users.role_permission') }}"><i class="fa fa-circle-o"></i> Role Permissions</a></li>
+            <li><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i>Users</a></li>
+          </ul>
+        </li>
+        @endrole
 
-          <li class="nav-item">
-              <a href="{{ route('product.index') }}" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Product</p>
-              </a>
-          </li>
+        @if(auth()->user()->can('show products') || auth()->user()->can('delete products') || auth()->user()->can('create products'))
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-server"></i>
+            <span>Manajement Product</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i> Category</a></li>
+            <li><a href="{{ route('product.index') }}"><i class="fa fa-circle-o"></i> Product</a></li>
           </ul>
         </li>
         @endif
-        
-        @role('admin')
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fa fa-user"></i>
-            <p>
-              Manajement Users
-              <i class="right fa fa-angle-left"></i>
-            </p>
+
+        @role('kasir')
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-shopping-cart"></i> 
+            <span>Transaction</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{ route('role.index') }}" class="nav-link">
-                <i class="fa fa-circle-o nav-icon"></i>
-                <p>Role</p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route('users.role_permission') }}" class="nav-link">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Role Permission</p>
-                </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="{{ route('users.index') }}" class="nav-link">
-                <i class="fa fa-circle-o nav-icon"></i>
-                <p>Users</p>
-              </a>
-            </li>
+          <ul class="treeview-menu">
+            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
+            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
           </ul>
         </li>
         @endrole
-
-        @role('kasir')
-        <li class="nav-item">
-          <a href="{{ route('order.transaction') }}" class="nav-link">
-            <i class="nav-icon fa fa-shopping-cart"></i>
-            <p>
-              Transaction
-            </p>
+        
+        <li class="treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-shopping-bag"></i> <span>Manajement Order</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('order.index') }}"><i class="fa fa-circle-o"></i> Order</a></li>
+            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+          </ul>
         </li>
-        @endrole
-
-          <li class="nav-item has-treeview">
+        
+        <li class="nav-item has-treeview">
             <a href="{{ route('logout')}}" class="nav-link"
               onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
@@ -119,6 +113,9 @@
             @csrf
             </form>
           </li>
+          
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

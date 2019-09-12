@@ -103,45 +103,7 @@
                             @endslot
                         @endcard
                     </div>
-
-                    <!-- MENAMPILKAN LIST PRODUCT YANG ADA DI KERANJANG -->
-                    <div class="col-md-4">
-                        @card
-                            @slot('title')
-                                Cart
-                            @endslot
-
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Price</th>
-                                        <th>QTY</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <!-- MENGGUNAKAN LOOPING VUEJS -->
-                                    <tr v-for="(row, index) in ShoppingCart">
-                                        <td>@{{ row.name }} (@{{ row.code }})</td>
-                                        <td>@{{ row.price | currency}}</td>
-                                        <td>@{{ row.qty}}</td>
-                                        <td>
-                                            <!-- EVENT ONCLICK UNTUK MENGHAPUS CART -->
-                                            <button @click.prevent="removeCart(index)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            @slot('footer')
-                            <div class="card-footer text-muted">
-                                <a href="{{ route('order.checkout') }}" class="btn btn-info btn-sm float-right">Checkout</a>
-                            </div>
-                            @endslot
-                        @endcard
-                    </div>
+                        @include('Orders.cart')
                 </div>
             </div>
         </section>
