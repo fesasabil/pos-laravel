@@ -10,6 +10,8 @@ class Order extends Model
         'invoice', 'customer_id', 'user_id', 'total'
     ];
 
+    protected $dates = ['created_at '];
+
     public function order_detail()
     {
         return $this->hasMany(Order_detail::class);

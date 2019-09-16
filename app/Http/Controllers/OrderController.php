@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Order_detail;
+use App\Exports\OrderInvoice;
 use Carbon\Carbon;
 use App\User;
 use Cookie;
@@ -244,8 +245,13 @@ class OrderController extends Controller
     {
         $order = Order::where('invoice', $invoice)->with('customer', 'order_detail', 'order_detail.product')->first();
         $pdf = PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif'])
-            ->loadView('orders.report.invoice', compact('order'));
+            ->loadView('Orders.Report.invoice', compact('order'));
         return $pdf->stream();
+    }
+
+    public function invoiceExcel($invoice)
+    {
+        return (new OrderInvoice($invoice))->download('invoice-' . $invoice . '.xlsx');
     }
     
 }
